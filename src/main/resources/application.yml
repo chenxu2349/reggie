@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    #应用名称，可选项，不配置默认使用工程名111
+    #应用名称，可选项，不配置默认使用工程名1112222
     name: reggie_take_out
   datasource:
     druid:
