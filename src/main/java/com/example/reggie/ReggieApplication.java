@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @SpringBootApplication
 public class ReggieApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ReggieApplication.class, args);
     }
-
 }
