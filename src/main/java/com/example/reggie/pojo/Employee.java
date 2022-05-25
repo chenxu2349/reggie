@@ -10,8 +10,11 @@ import java.time.LocalDateTime;
  * 员工实体类
  */
 
-@Data
+@Data   //在实体类上添加@Data注解，可以省去代码中大量的 get()、 set()、 toString() 等方法，提高代码的简洁
 public class Employee implements Serializable {
+    //serializable接口的作用：
+    // 1、存储对象在存储介质中，以便在下次使用的时候，可以很快捷的重建一个副本；
+    // 2、便于数据传输，尤其是在远程调用的时候。
 
     private static final long serialVersionUID = 1L;
 
@@ -30,6 +33,7 @@ public class Employee implements Serializable {
     //身份证号码，驼峰命名与数据库字段可以自动映射
     private String idNumber;
 
+    //当前员工账号状态，1表示正常使用，0表示账号被锁定不能登录
     private Integer status;
 
     private LocalDateTime createTime;
