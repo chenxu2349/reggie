@@ -1,8 +1,10 @@
 # reggie take out
 # 瑞吉外卖项目代码
 ### 1.使用到的技术
-* askj
-* 撒啊
+* springboot
+* mybatis,mybatis-plus
+* redis
+* vue
 
 ### 2.项目进度
 

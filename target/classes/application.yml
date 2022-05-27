@@ -1,3 +1,4 @@
+#默认首页地址：http://localhost:8080/backend/page/login/login.html
 server:
   port: 8080
 spring:

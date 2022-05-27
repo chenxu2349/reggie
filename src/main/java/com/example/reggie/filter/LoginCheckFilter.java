@@ -1,6 +1,8 @@
 package com.example.reggie.filter;
 
 
+import com.alibaba.fastjson.JSON;
+import com.example.reggie.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
 
@@ -34,6 +36,8 @@ public class LoginCheckFilter implements Filter {
 
         //获取本次请求URI
         String requestURI = request.getRequestURI();
+        log.info("拦截到请求：{}",requestURI);
+
         String[] urls = new String[]{
                 //定义不处理直接放行的请求
                 "/employee/login",
@@ -41,16 +45,30 @@ public class LoginCheckFilter implements Filter {
                 "/backend/**",
                 "/front/**"
         };
+        //判断是否直接放行
         boolean check = check(urls, requestURI);
         if(check){
             //如果匹配上，直接放行
+            log.info("本次请求不需要处理：{}",requestURI);
             filterChain.doFilter(request, response);
             return;
         }
 
+        //判断登录状态，如果已经登录则直接放行
+        if(request.getSession().getAttribute("employee") != null){
+            log.info("用户已登录，用户id:{}",request.getSession().getAttribute("employee"));
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-        log.info("拦截到请求：{}",request.getRequestURI());
-        filterChain.doFilter(request,response);
+        log.info("用户未登录");
+        //如果未登录，返回未登录结果，通过输出流方式向客户端页面响应数据
+        //这里的NOTLOGIN需要参照前端的接收数据
+        response.getWriter().write(JSON.toJSONString(Result.error("NOTLOGIN")));
+        return;
+
+//        log.info("拦截到请求：{}",request.getRequestURI());
+//        filterChain.doFilter(request,response);
     }
 
     /**
