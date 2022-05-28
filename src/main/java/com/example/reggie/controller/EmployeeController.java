@@ -1,16 +1,14 @@
 package com.example.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.reggie.common.Result;
 import com.example.reggie.pojo.Employee;
 import com.example.reggie.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
@@ -95,6 +93,16 @@ public class EmployeeController {
         //保存入数据库
         employeeService.save(employee);
         return Result.success("员工添加成功");
+    }
+
+    /**
+     * 员工信息列表分页查询
+     * chenxu
+     * 2022/5/28 21:43
+     **/
+    @GetMapping("/page")
+    public Result<Page> page(int page, int pageSize, String name){
+        return null;
     }
 
 }
