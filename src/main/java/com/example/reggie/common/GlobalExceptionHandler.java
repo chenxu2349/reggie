@@ -31,6 +31,7 @@ public class GlobalExceptionHandler {
     public Result<String> exceptionHandler(SQLIntegrityConstraintViolationException ex){
         log.error("异常信息：{}",ex.getMessage());
 
+        //根据报错处理账号已存在问题
         if(ex.getMessage().contains("Duplicate entry")){
             String[] account = ex.getMessage().split(" ");
             String msg = "用户账号" + account[2] + "已存在";
