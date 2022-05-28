@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -71,6 +72,29 @@ public class EmployeeController {
     public Result<String> logout(HttpServletRequest request){
         request.getSession().removeAttribute("employee");
         return Result.success("退出成功");
+    }
+
+    /**
+     * 新增员工方法
+     */
+    @PostMapping
+    public Result<String> addemployee(HttpServletRequest request, @RequestBody Employee employee){
+        log.info("检测到新增员工信息：{}",employee.toString());
+        //设置默认密码并加密
+        employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
+
+        //获取当前时间
+        employee.setCreateTime(LocalDateTime.now());
+        employee.setUpdateTime(LocalDateTime.now());
+
+        //获取添加人信息
+        Long operatorID = (Long) request.getSession().getAttribute("employee");
+        employee.setUpdateUser(operatorID);
+        employee.setCreateUser(operatorID);
+
+        //保存入数据库
+        employeeService.save(employee);
+        return Result.success("员工添加成功");
     }
 
 }
