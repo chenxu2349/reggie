@@ -45,6 +45,7 @@ public class EmployeeController {
         password = DigestUtils.md5DigestAsHex(password.getBytes());
         //包装一个查询对象，根据用户名查询，这里用户名已经设置为唯一
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
+        //public Children eq(     R column,Object val )
         queryWrapper.eq(Employee::getUsername,employee.getUsername());
         Employee emp = employeeService.getOne(queryWrapper);
         //用户名查询结果
