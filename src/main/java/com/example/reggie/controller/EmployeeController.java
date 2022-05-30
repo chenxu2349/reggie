@@ -121,4 +121,19 @@ public class EmployeeController {
         return Result.success(pageInfo);
     }
 
+    /**
+     *@Description 更新员工信息
+     *@Author chenxu
+     *@Date 2022/5/30 21:25
+     **/
+    @PutMapping
+    public Result<String> update(HttpServletRequest request, @RequestBody Employee employee){
+        log.info(employee.toString());
+
+        Long empId = (Long)request.getSession().getAttribute("employee");
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(empId);
+        employeeService.updateById(employee);
+        return Result.success("员工信息修改成功");
+    }
 }

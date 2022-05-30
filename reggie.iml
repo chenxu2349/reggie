@@ -97,7 +97,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.20" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.20" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.20" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.76" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.83" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: mysql:mysql-connector-java:8.0.29" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:druid-spring-boot-starter:1.1.23" level="project" />
