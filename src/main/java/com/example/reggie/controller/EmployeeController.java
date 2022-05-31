@@ -133,6 +133,7 @@ public class EmployeeController {
         Long empId = (Long)request.getSession().getAttribute("employee");
         employee.setUpdateTime(LocalDateTime.now());
         employee.setUpdateUser(empId);
+        //提交数据库更新信息
         employeeService.updateById(employee);
         return Result.success("员工信息修改成功");
     }
