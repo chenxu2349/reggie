@@ -137,4 +137,19 @@ public class EmployeeController {
         employeeService.updateById(employee);
         return Result.success("员工信息修改成功");
     }
+
+    /**
+     *@Description 根据id查询员工，参数被添加在访问路径中
+     *@Author chenxu
+     *@Date 2022/6/1 21:46
+     **/
+    @GetMapping("/{id}")
+    public Result<Employee> getById(@PathVariable Long id){
+        log.info("根据id查询员工信息...");
+        Employee employee = employeeService.getById(id);
+        if(employee != null){
+            return Result.success(employee);
+        }
+        return Result.error("查询失败");
+    }
 }
