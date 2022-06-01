@@ -36,8 +36,12 @@ public class Employee implements Serializable {
     //当前员工账号状态，1表示正常使用，0表示账号被锁定不能登录
     private Integer status;
 
+    //插入时填充字段
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
+    //插入和更新时填充字段
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     @TableField(fill = FieldFill.INSERT)
