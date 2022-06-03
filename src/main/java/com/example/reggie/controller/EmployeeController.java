@@ -22,7 +22,6 @@ import java.time.LocalDateTime;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-
     @Autowired
     private EmployeeService employeeService;
 
@@ -62,6 +61,7 @@ public class EmployeeController {
         }
         //登录成功
         request.getSession().setAttribute("employee",emp.getId());
+
         return Result.success(emp);
     }
 
@@ -72,7 +72,9 @@ public class EmployeeController {
      */
     @PostMapping("/logout")
     public Result<String> logout(HttpServletRequest request){
+
         request.getSession().removeAttribute("employee");
+
         return Result.success("退出成功");
     }
 
@@ -82,6 +84,7 @@ public class EmployeeController {
     @PostMapping
     public Result<String> addemployee(HttpServletRequest request, @RequestBody Employee employee){
         log.info("检测到新增员工信息：{}",employee.toString());
+
         //设置默认密码并加密
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
 
@@ -96,6 +99,7 @@ public class EmployeeController {
 
         //保存入数据库
         employeeService.save(employee);
+
         return Result.success("员工添加成功");
     }
 
@@ -105,8 +109,8 @@ public class EmployeeController {
      * 2022/5/28 21:43
      **/
     @GetMapping("/page")
-    public Result<Page> page(int page, int pageSize, String name){
-        log.info("page={},pageSize={},name={}",page,pageSize,name);
+    public Result<Page> getEmployeePages(int page, int pageSize, String name){
+        log.info("前端传回的GET参数：page={},pageSize={},name={}",page,pageSize,name);
 
         //构造分页构造器
         Page pageInfo = new Page(page,pageSize);
@@ -118,6 +122,7 @@ public class EmployeeController {
         queryWrapper.orderByDesc(Employee::getUpdateTime);
         //执行查询
         employeeService.page(pageInfo,queryWrapper);
+
         return Result.success(pageInfo);
     }
 
@@ -127,7 +132,7 @@ public class EmployeeController {
      *@Date 2022/5/30 21:25
      **/
     @PutMapping
-    public Result<String> update(HttpServletRequest request, @RequestBody Employee employee){
+    public Result<String> updateEmployee(HttpServletRequest request, @RequestBody Employee employee){
         log.info(employee.toString());
 
 //        Long empId = (Long)request.getSession().getAttribute("employee");
@@ -135,6 +140,7 @@ public class EmployeeController {
 //        employee.setUpdateUser(empId);
         //提交数据库更新信息
         employeeService.updateById(employee);
+
         return Result.success("员工信息修改成功");
     }
 
@@ -146,10 +152,13 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public Result<Employee> getById(@PathVariable Long id){
         log.info("根据id查询员工信息...");
+
+        //执行查询
         Employee employee = employeeService.getById(id);
         if(employee != null){
             return Result.success(employee);
         }
+
         return Result.error("查询失败");
     }
 }
