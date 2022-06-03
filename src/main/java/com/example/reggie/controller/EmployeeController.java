@@ -85,14 +85,14 @@ public class EmployeeController {
         //设置默认密码并加密
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
 
-        //获取当前时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-
-        //获取添加人信息
-        Long operatorID = (Long) request.getSession().getAttribute("employee");
-        employee.setUpdateUser(operatorID);
-        employee.setCreateUser(operatorID);
+//        //获取当前时间
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//
+//        //获取添加人信息
+//        Long operatorID = (Long) request.getSession().getAttribute("employee");
+//        employee.setUpdateUser(operatorID);
+//        employee.setCreateUser(operatorID);
 
         //保存入数据库
         employeeService.save(employee);
@@ -130,9 +130,9 @@ public class EmployeeController {
     public Result<String> update(HttpServletRequest request, @RequestBody Employee employee){
         log.info(employee.toString());
 
-        Long empId = (Long)request.getSession().getAttribute("employee");
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(empId);
+//        Long empId = (Long)request.getSession().getAttribute("employee");
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(empId);
         //提交数据库更新信息
         employeeService.updateById(employee);
         return Result.success("员工信息修改成功");

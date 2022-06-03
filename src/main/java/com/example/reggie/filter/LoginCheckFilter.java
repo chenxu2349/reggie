@@ -2,6 +2,7 @@ package com.example.reggie.filter;
 
 
 import com.alibaba.fastjson.JSON;
+import com.example.reggie.common.BaseContext;
 import com.example.reggie.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -33,6 +34,10 @@ public class LoginCheckFilter implements Filter {
          * 2.判断请求是否需要登录处理，如果不需要则直接放行
          * 3.需要登录的则判断登录状态
          */
+
+        //从线程工具类获取用户id
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        BaseContext.setId(empId);
 
         //获取本次请求URI
         String requestURI = request.getRequestURI();
