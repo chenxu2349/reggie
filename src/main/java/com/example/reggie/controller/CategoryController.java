@@ -68,8 +68,29 @@ public class CategoryController {
      * chenxu
      * 2022/6/3 23:43
      **/
+    @PutMapping
     public Result<String> updateCategory(HttpServletRequest request, @RequestBody Category category){
         log.info(category.toString());
-        return null;
+
+        categoryService.updateById(category);
+
+        return Result.success("修改成功");
+    }
+
+    /**
+     * 删除分类
+     * chenxu
+     * 2022/6/4 10:59
+     **/
+    @DeleteMapping
+    public Result<String> deleteCategory(Long ids){
+        log.info("要删除的分类id：{}",ids);
+
+        //categoryService.removeById(ids);
+
+        //这个是完善后自己写的删除方法
+        categoryService.deleteCategory(ids);
+
+        return Result.success("删除分类成功");
     }
 }

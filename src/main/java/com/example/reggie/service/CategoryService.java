@@ -11,4 +11,5 @@ import com.example.reggie.pojo.Category;
  * @Date 2022/6/3 20:59
  **/
 public interface CategoryService extends IService<Category> {
+    public void deleteCategory(Long id);
 }

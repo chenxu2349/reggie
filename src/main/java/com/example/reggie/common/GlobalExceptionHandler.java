@@ -11,7 +11,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  * @ClassName GlobalExceptionHandler
- * @Description 全局异常处理类
+ * @Description 全局异常处理类，用于处理自己定义的异常
  * @Author chenxu
  * @Date 2022/5/28 18:10
  **/
@@ -21,7 +21,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 public class GlobalExceptionHandler {
 
     /**
-     * 异常处理方法
+     * 异常处理方法:处理重复信息报的异常
      * 全局拦截异常的关键在两个注解：@ControllerAdvice, @ExceptionHandler
      * chenxu
      * 2022/5/28 18:35
@@ -38,6 +38,18 @@ public class GlobalExceptionHandler {
             return Result.error(msg);
         }
         return Result.error("失败");
+    }
+
+    /**
+     * 异常处理方法：处理业务异常
+     * chenxu
+     * 2022/6/4 20:17
+     **/
+    @ExceptionHandler(CustomException.class)
+    public Result<String> exceptionHandler(CustomException ex){
+        log.error("异常信息：{}",ex.getMessage());
+
+        return Result.error(ex.getMessage());
     }
 }
 
