@@ -21,3 +21,6 @@ mybatis-plus:
     db-config:
       #主键生成策略
       id-type: ASSIGN_ID
+
+reggie:
+  path: D:\
