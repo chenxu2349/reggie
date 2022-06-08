@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.reggie.common.CustomException;
+import com.example.reggie.common.Result;
 import com.example.reggie.mapper.CategoryMapper;
 import com.example.reggie.pojo.Category;
 import com.example.reggie.pojo.Dish;
@@ -14,6 +15,9 @@ import com.example.reggie.service.SetmealService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName CategoryServiceImpl
@@ -30,6 +34,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
     @Autowired
     private SetmealService setmealService;
+
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     /**
      * 删除之前，需要先判断该分类下是否包含菜品或者套餐
@@ -62,5 +69,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         //没有关联菜品和套餐，正常删除
         //???
         super.removeById(id);
+    }
+
+    public Result<List<Category>> getByType(int type){
+        //List<Category> list = new ArrayList<>();
+        LambdaQueryWrapper<Category> categoryLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        categoryLambdaQueryWrapper.eq(Category::getType, type);
+        List<Category> list = categoryMapper.selectList(categoryLambdaQueryWrapper);
+        return Result.success(list);
     }
 }

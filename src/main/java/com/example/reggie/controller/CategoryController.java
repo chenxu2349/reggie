@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @ClassName CategoryController
@@ -92,5 +93,17 @@ public class CategoryController {
         categoryService.deleteCategory(ids);
 
         return Result.success("删除分类成功");
+    }
+
+    /**
+     *@Description 获取菜品分类列表
+     *@Author chenxu
+     *@Date 2022/6/6 22:44
+     **/
+    @GetMapping("/list")
+    public Result<List<Category>> getList(int type){
+
+        return categoryService.getByType(type);
+
     }
 }

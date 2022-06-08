@@ -23,4 +23,4 @@ mybatis-plus:
       id-type: ASSIGN_ID
 
 reggie:
-  path: D:\
+  path: D:\DishImages\
