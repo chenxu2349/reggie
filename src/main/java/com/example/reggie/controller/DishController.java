@@ -15,6 +15,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -97,4 +98,47 @@ public class DishController {
 
         return Result.success("菜品信息修改成功");
     }
+
+    /**
+     *@Description 更改菜品售卖状态（可批量）
+     *@Author chenxu
+     *@Date 2022/6/8 21:39
+     **/
+    @PostMapping("/status/{status}")
+    public Result<String> updateStatus(@PathVariable int status, Long[] ids){
+        log.info("{}",status);
+        log.info(ids.toString());
+
+        for (int i=0; i< ids.length; i++){
+            Dish dish = dishService.getById(ids[i]);
+            if(status==0) {
+                dish.setStatus(0);
+            }else {
+                dish.setStatus(1);
+            }
+            dishService.updateById(dish);
+        }
+
+        return Result.success("状态更改成功");
+    }
+
+    /**
+     *@Description 删除菜品（可批量）
+     *@Author chenxu
+     *@Date 2022/6/8 23:02
+     **/
+    @DeleteMapping
+    public Result<String> deleteById(Long[] ids){
+
+        for (int i=0; i< ids.length; i++){
+            try {
+                dishService.removeById(ids[i]);
+            }catch (Exception e){
+                return Result.error("删除异常");
+            }
+        }
+
+        return Result.success("删除成功");
+    }
+
 }
