@@ -121,4 +121,19 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
     public void updateStatus(Long ids) {
         return;
     }
+
+    /**
+     *@Description 获取菜品分类下的菜品列表
+     *@Author chenxu
+     *@Date 2022/6/9 20:55
+     **/
+    @Override
+    public Result<List<Dish>> getDishListById(Long categoryId) {
+
+        LambdaQueryWrapper<Dish> dishLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        dishLambdaQueryWrapper.eq(Dish::getCategoryId, categoryId);
+        List<Dish> list = this.list(dishLambdaQueryWrapper);
+
+        return Result.success(list);
+    }
 }

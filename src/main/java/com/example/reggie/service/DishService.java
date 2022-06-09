@@ -5,6 +5,8 @@ import com.example.reggie.common.Result;
 import com.example.reggie.dto.DishDto;
 import com.example.reggie.pojo.Dish;
 
+import java.util.List;
+
 /**
  * @InterfaceName DishService
  * @Description
@@ -21,4 +23,6 @@ public interface DishService extends IService<Dish> {
     public void updateWithFlavor(DishDto dishDto);
 
     public void updateStatus(Long ids);
+
+    public Result<List<Dish>> getDishListById(Long categoryId);
 }

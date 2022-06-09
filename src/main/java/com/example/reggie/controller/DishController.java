@@ -141,4 +141,14 @@ public class DishController {
         return Result.success("删除成功");
     }
 
+    /**
+     *@Description 获取某个菜品分类下的菜品
+     *@Author chenxu
+     *@Date 2022/6/9 20:46
+     **/
+    @GetMapping("/list")
+    public Result<List<Dish>> getDishListById(Long categoryId){
+        return dishService.getDishListById(categoryId);
+    }
+
 }
