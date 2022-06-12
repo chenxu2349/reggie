@@ -28,9 +28,6 @@ import java.util.stream.Collectors;
 public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements DishService {
 
     @Autowired
-    private DishMapper dishMapper;
-
-    @Autowired
     private DishFlavorService dishFlavorService;
 
     /**

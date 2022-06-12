@@ -32,9 +32,6 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
-    @Autowired
-    private CategoryService categoryService;
-
     /**
      *@Description 分页查询
      *@Author chenxu
