@@ -2,6 +2,7 @@ package com.example.reggie;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class Solution {
     public static String decodeMessage(String key, String message) {
@@ -26,6 +27,27 @@ public class Solution {
         return new String(ans);
     }
 
+    public static boolean validateStackSequences(int[] pushed, int[] popped) {
+        int len = pushed.length;
+        Stack<Integer> stack = new Stack<>();
+        // i, j是分别扫描push和pop序列的指针
+        int j = 0;
+        for(int i = 0; i < len; i++) {
+            if(stack.empty()) stack.push(pushed[i]);
+            else if(stack.peek() == popped[j]) {
+                int p = stack.pop();
+                j++; i--;
+            }
+            else stack.push(pushed[i]);
+        }
+        while(!stack.empty()) {
+            int p = stack.pop();
+            if(p == popped[j]) j++;
+            else return false;
+        }
+        return true;
+    }
+
     public static int[][] spiralMatrix(int m, int n, ListNode head) {
         return null;
     }
@@ -33,6 +55,9 @@ public class Solution {
     public static void main(String[] args) {
         String tt = decodeMessage("the quick brown fox jumps over the lazy dog","vkbs bs t suepuv");
         System.out.println(tt);
+        int[] pushed = new int[]{1,2,3,4,5};
+        int[] poped = new int[]{4,5,3,2,1};
+        System.out.println(validateStackSequences(pushed, poped));
 
     }
 
