@@ -59,6 +59,11 @@ public class Solution {
         int[] poped = new int[]{4,5,3,2,1};
         System.out.println(validateStackSequences(pushed, poped));
 
+        StringBuilder str = new StringBuilder();
+        str.append(10);
+        System.out.println(str);
+        str.append("->" + 5);
+        System.out.println("str:" + str);
     }
 
 
