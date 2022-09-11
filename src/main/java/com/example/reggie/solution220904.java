@@ -1,9 +1,6 @@
 package com.example.reggie;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class solution220904 {
 
@@ -90,5 +87,12 @@ public class solution220904 {
         int[][] nums = new int[][]{{1,3},{2,6},{5,10},{8,9},{7,9}};
 
         for (int[] k : merge(nums)) System.out.println(Arrays.toString(k));
+
+        Set<Integer> set = new HashSet<>();
+        set.add(1);set.add(2);set.add(3);set.add(1);
+        System.out.println(set.contains(4));
+
+        String[] ss = new String[]{"111", "222", "333"};
+        System.out.println(ss[0].equals("112"));
     }
 }
