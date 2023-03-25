@@ -83,6 +83,23 @@ public class solution221016 {
         return ans;
     }
 
+    public static int beautySum(String s) {
+        int len = s.length(), sum = 0;
+        for(int i = 0; i < len; i++) {
+            Map<Character, Integer> map = new HashMap<>();
+            int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+            for(int j = i; j < len; j++) {
+                char c = s.charAt(j);
+                map.put(c, map.getOrDefault(c, 0) + 1);
+                max = Math.max(max, map.get(c));
+                min = Math.min(min, map.get(c));
+                if(map.size() == 1) sum += 0;
+                else sum += (max - min);
+            }
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         //1.
         System.out.println("ANSWER 1:");
@@ -98,5 +115,7 @@ public class solution221016 {
         //fruit
         int[] fruits = new int[]{3,3,3,1,2,1,1,2,3,3,4};
         System.out.println(totalFruit(fruits));
+        //
+        System.out.println(beautySum("spps"));
     }
 }
