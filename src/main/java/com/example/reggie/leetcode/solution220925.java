@@ -1,12 +1,14 @@
-package com.example.reggie;
+package com.example.reggie.leetcode;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
 public class solution220925 {
 
     public static int longestSubarray(int[] nums) {
+        Calendar calendar = Calendar.getInstance();
         int len = nums.length, max = 0, left = 0, right = 1, ans = 1;
         if(len == 1) return 1;
         for(int k : nums) max = Math.max(max, k);

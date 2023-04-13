@@ -1,4 +1,4 @@
-package com.example.reggie;
+package com.example.reggie.leetcode;
 
 /**
  * @ClassName Solution220820

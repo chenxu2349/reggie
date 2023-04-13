@@ -1,4 +1,4 @@
-package com.example.reggie;
+package com.example.reggie.leetcode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
